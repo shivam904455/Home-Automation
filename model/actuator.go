@@ -1,8 +1,10 @@
 package model
 
-import "time"
+import ( "time"
+uuid "github.com/google/uuid"
+)
 
-type actuator struct {
+type Actuator struct {
 	ID                 uuid.UUID `json:"id" gorm:"primarykey"`
 	RoomsID            uuid.UUID `json:"rooms_id"binding:"requird"  gorm:"not null"`
 	HouseID            uuid.UUID `json:"house_id"binding:"requird"  gorm:"not null"`
@@ -10,7 +12,7 @@ type actuator struct {
 	Name               string    `json:"name"binding:"requird"  gorm:"not null"`
 	Description        string    `josn:"description"`
 	Area               string    `json:"area"`
-	WattConsuption     string    `json:"watt_consuption"`
+	WattConsumption     string    `json:"watt_consumption"`
 	Occupancy          string    `json:"Occupancy"`
 	HeatingEnabled     bool      `json:"heating_enabled"`
 	HeatingType        string    `json:"heating-type"`
