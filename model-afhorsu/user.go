@@ -4,6 +4,7 @@ import (
 	"time"
 
 	uuid "github.com/google/uuid"
+
 	"gorm.io/gorm"
 )
 
@@ -37,7 +38,7 @@ type user struct {
 	UpdatedBy             string    `json:"updated_by"`
 	UpdatedAt             time.Time `json:"updated_at"`
 }
-type UserSingnIn struct{
-	Email string `json:"email" binding:"required"`
+type UserSingnIn struct {
+	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
