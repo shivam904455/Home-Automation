@@ -25,7 +25,7 @@ type Room struct {
 	LightLavel         string    `json:"light_lavel"`
 	Co2Lavel           string    `json:"co2_lavel"`
 	CreatedAt          time.Time `json:"created_at" gorm:"not null"`
-	CreatedBy          string    `json:"created_by" binding"required" gorm:"not null"`
+	CreatedBy          string    `json:"created_by" binding:"required" gorm:"not null"`
 	UpdatedAt         time.Time `json:"upadated_at"`
 	UpdatedBy          string    `json:"updated_by"`
 }
