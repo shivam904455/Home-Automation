@@ -5,7 +5,7 @@ import (
 uuid "github.com/google/uuid"
 )
 
-type organisation struct {
+type Organisation struct {
 	ID                         uuid.UUID `json:"id" gorm:"primarykey "`
 	PakcageId                  uuid.UUID `json:"pakcage_id" binding:"required" gorm:"not null"`
 	Name                       string    `json:"name" binding:"required" gorm:"not null"`
