@@ -30,5 +30,5 @@ type Actuator struct {
 	CreatedBy          string    `json:"created_by"  binding:"requird" gorm:"not null"`
 	UpdatedAt          time.Time `json:"updated_at"`
 	Upadatedby         string    `json:"updated_by"`
-	home               int
+
 }
