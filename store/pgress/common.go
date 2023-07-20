@@ -59,4 +59,5 @@ func (store PgressStore) setDateRangeFilter(filter map[string]string, query *gor
 		return
 	}
 	query.Where("date_column BETWEEN ? AND ?", startDate, endDate)
+	
 }

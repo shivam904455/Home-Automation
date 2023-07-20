@@ -109,4 +109,5 @@ func (store PgressStore) DeleteActuator(actuatorID string) error{
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.DeleteActuator,
 		"successfully deleted actuator", nil)
 	return nil
+	
 }
