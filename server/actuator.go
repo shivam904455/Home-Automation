@@ -87,7 +87,7 @@ func (server *Server) CreateActuator(c *gin.Context) error {
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.CreateActuator,
 			"error while creating record from pgress", err)
-		return fmt.Errorf("")
+		return  fmt.Errorf("")
 	}
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetActuators,
 		"successfully created actuator record and setting response", actuator)
