@@ -16,8 +16,6 @@ type Server struct {
 func (s *Server) NewServer(store pgress.PgressStore) {
 
 	s.Pgress = &store
-
-
 	util.SetLoger()
 	util.Logger.Info("Logger Setup Done at server level")
 	fmt.Println("Creating new Store .....")

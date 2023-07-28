@@ -11,24 +11,24 @@ import (
 	"github.com/shivam904455/Home-Automation/util"
 )
 
-func (server *Server) GetOrganizations(c *gin.Context)(* []model.Organization,error){
+func (server *Server) GetOrganizations(c *gin.Context) (*[]model.Organization, error) {
 
-// validation is to be done
-// DB call
-
-util.Log(model.LogLevelInfo ,model.ServerPackageLavel,model.GetOrganizations,"reading all origanization data"  ,nil)
-organizations ,err:=server.Pgress.GetOrganizations()
-if err!=nil{
-	util.Log(model.LogLevelError ,model.ServerPackageLavel, model.GetOrganizations,
-	"error while reading organization data from pgress",err)
-	return organizations ,fmt.Errorf("")	
+	//validation is to be done here
+	//DB call
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetOrganizations, "reading all organization data", nil)
+	organizations, err := server.Pgress.GetOrganizations()
+	if err != nil {
+		util.Log(model.LogLevelError, model.ServerPackageLavel, model.GetOrganizations,
+			"error while reading organizations data from pgress", err)
+		return organizations, fmt.Errorf("")
 	}
-util.Log(model.LogLevelInfo,model.ServerPackageLavel ,model.GetOrganizations,
-"returning all organization data to api and setting response", organizations)
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetOrganizations,
+		"returning all organization data to api and setting response", organizations)
 	c.JSON(http.StatusOK, organizations)
 	return organizations, nil
 
 }
+
 func (server *Server) GetOrganizationsByFilter(c *gin.Context) (*[]model.Organization, error) {
 
 	//validation is to be done here
