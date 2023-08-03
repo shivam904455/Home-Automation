@@ -11,7 +11,6 @@ import (
 	"github.com/shivam904455/Home-Automation/util"
 )
 
-
 func (server *Server) GetFloors(c *gin.Context) (*[]model.Floor, error) {
 
 	//validation is to be done here
@@ -61,7 +60,7 @@ func (server *Server) GetFloor(c *gin.Context) (*model.Floor, error) {
 			"error while reading floor data from pgress", err )
 		return floor, fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetFloors , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetFloor , 
 		"returning floor data to api and setting response" , floor)
 	c.JSON(http.StatusOK, floor)
 	return floor, nil

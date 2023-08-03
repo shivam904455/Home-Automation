@@ -1,6 +1,9 @@
 package model
 
-import "time"
+import (
+	"time"
+
+)
 
 type CommonParamerers struct {
 	Name      string    `json:"name"`

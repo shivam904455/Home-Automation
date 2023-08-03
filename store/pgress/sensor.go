@@ -1,8 +1,7 @@
-package pgress
+package pgress 
 
 import (
 	"fmt"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 	"gorm.io/gorm"
@@ -94,7 +93,6 @@ func (store PgressStore) UpdateSensor(sensor *model.Sensor) error {
 
 // DeleteSensor is used to delete record by given sensorID
 func (store PgressStore) DeleteSensor(sensorID string) error {
-
 
 	var sensor model.Sensor
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.DeleteSensor, "deleting sensor data", sensorID)

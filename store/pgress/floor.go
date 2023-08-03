@@ -25,7 +25,7 @@ func (store PgressStore) GetFloors() (*[]model.Floor, error) {
 func (store PgressStore) GetFloorsByFilter(filter map[string]string) (*[]model.Floor, error) {
 	var floor []model.Floor
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.GetFloorByFilter,
-		"reading floor data from db based on filter", filter)
+		"reading floor data from DB based on filter", filter)
 	var query *gorm.DB
 	for key, value := range filter {
 		if key == model.PageNumber || key == model.DataPerPage || key == filter[model.StartDate] || key == filter[model.EndDate] {
@@ -93,7 +93,7 @@ func (store PgressStore) UpdateFloor(floor *model.Floor) error {
 }
 
 // DeleteFloor is used to delete record by given floorID
-func (store PgressStore) DeleteFloor(floorID string) error{
+func (store PgressStore) DeleteFloor(floorID string) error {
 
 	var floor model.Floor
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.DeleteFloor, "deleting floor data", floorID)

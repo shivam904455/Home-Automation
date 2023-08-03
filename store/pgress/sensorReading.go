@@ -1,8 +1,7 @@
 package pgress
 
-import (
+import(
 	"fmt"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 	"gorm.io/gorm"

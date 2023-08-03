@@ -7,24 +7,23 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 )
 
 func (server *Server) GetPointRates(c *gin.Context) (*[]model.PointRate, error) {
 
-	//validation is to be done here
-	//DB call
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates, "reading all pointer data", nil)
+	// validation is to be done here
+	// DB call
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates, "reading all pointer data ", nil)
 	pointers, err := server.Pgress.GetPointRates()
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.GetPointRates,
-			"error while reading pointers data from pgress", err)
+			"error while reading pointers data from pgress ", err)
 		return pointers, fmt.Errorf("")
 	}
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
-		"returning all pointer data to api and setting response", pointers)
+		"returning all pointer data to api and setting response ", pointers)
 	c.JSON(http.StatusOK, pointers)
 	return pointers, nil
 
@@ -32,18 +31,18 @@ func (server *Server) GetPointRates(c *gin.Context) (*[]model.PointRate, error) 
 
 func (server *Server) GetPointRatesByFilter(c *gin.Context) (*[]model.PointRate, error) {
 
-	//validation is to be done here
-	//DB call
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates, "reading all pointRate data", nil)
+	// validation is  to be done here
+	// DB call
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates, "reading all pointRate data ", nil)
 	condition := server.readQueryParams(c)
 	pointRates, err := server.Pgress.GetPointRatesByFilter(condition)
 	if err != nil {
-		util.Log(model.LogLevelError, model.ServerPackageLavel, model.GetPointRates,
-			"error while reading pointRates data from pgress", err)
+		util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
+			"error while reading pointRates data from pgress ", err)
 		return pointRates, fmt.Errorf("")
 	}
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
-		"returning all pointRate data to api and setting response", pointRates)
+		"returning all pointRate data to api and setting response ", pointRates)
 	c.JSON(http.StatusOK, pointRates)
 	return pointRates, nil
 
@@ -51,28 +50,29 @@ func (server *Server) GetPointRatesByFilter(c *gin.Context) (*[]model.PointRate,
 
 func (server *Server) GetPointRate(c *gin.Context) (*model.PointRate, error) {
 
-	//validation is to be done here
-	//DB call
+	// validation is to be done here
+	// DB call
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRate,
 		"reading pointer data from pgress", nil)
 	pointer, err := server.Pgress.GetPointRate(c.Param("id"))
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.GetPointRate,
-			"error while reading pointer data from pgress", err)
+			"error while reading pointer data from pgress ", err)
 		return pointer, fmt.Errorf("")
 	}
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
-		"returning pointer data to api and setting response", pointer)
+		"returning pointer data to api and setting  response ", pointer)
 	c.JSON(http.StatusOK, pointer)
 	return pointer, nil
 
 }
+
 func (server *Server) CreatePointRate(c *gin.Context) error {
 
 	var pointer model.PointRate
-	//Unmarshal
+	// Unmarshal
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.CreatePointRate,
-		"unmarshaling pointer data", nil)
+		"unmarshaling pointer data ", nil)
 
 	err := c.ShouldBindJSON(&pointer)
 	if err != nil {
@@ -82,44 +82,43 @@ func (server *Server) CreatePointRate(c *gin.Context) error {
 	}
 	pointer.ID = uuid.New()
 	pointer.CreatedAt = time.Now().UTC()
-	//validation is to be done here
-	//DB call
+	// validation is to be done here
+	// DB call
 	err = server.Pgress.CreatePointRate(&pointer)
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.CreatePointRate,
-			"error while creating record from pgress", err)
+			"error while creating record from pgress ", err)
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
-		"successfully created pointer record and setting response", pointer)
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.CreatePointRate,
+		"successfully created pointer record and setting response ", pointer)
 	c.JSON(http.StatusCreated, pointer)
 	return nil
-
 }
 
 func (server *Server) UpdatePointRate(c *gin.Context) error {
 
 	var pointer model.PointRate
-	//Unmarshal
+	// Unmarshal
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.UpdatePointRate,
-		"unmarshaling pointer data", nil)
+		"unmarshaling pointer data ", nil)
 	err := c.ShouldBindJSON(&pointer)
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.UpdatePointRate,
-			"error while unmarshaling payload", err)
+			"error while unmarshaling payload ", err)
 		return fmt.Errorf("")
 	}
-	//validation is to be done here
-	//DB call
+	// validation is to be done here
+	// DB call
 	pointer.UpdatedAt = time.Now().UTC()
 	err = server.Pgress.UpdatePointRate(&pointer)
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.UpdatePointRate,
-			"error while updating record from pgress", err)
+			"error while updating record from pgress ", err)
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.GetPointRates,
-		"successfully updated pointer record and setting response", pointer)
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.UpdatePointRate,
+		"successfully updated pointer record and setting response ", pointer)
 	c.JSON(http.StatusOK, pointer)
 	return nil
 
@@ -127,24 +126,23 @@ func (server *Server) UpdatePointRate(c *gin.Context) error {
 
 func (server *Server) DeletePointRate(c *gin.Context) error {
 
-	//validation is to be done here
+	// validation is to be done here 
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.DeletePointRate,
-		"reading pointer id", nil)
+	"reading pointer id ", nil)
 	id := c.Param("id")
 	if id == "" {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.DeletePointRate,
-			"missing pointer id", nil)
+		"missing pointer id ", nil)
 		return fmt.Errorf("")
 	}
-	//DB call
+	// DB call
 	err := server.Pgress.DeletePointRate(id)
 	if err != nil {
 		util.Log(model.LogLevelError, model.ServerPackageLavel, model.DeletePointRate,
-			"error while deleting pointer record from pgress", err)
+		"error while deleting pointer record from pgress ", err)
 		return fmt.Errorf("")
 	}
 	util.Log(model.LogLevelInfo, model.ServerPackageLavel, model.DeletePointRate,
-		"successfully deleted pointer record ", nil)
+	"successfully deleted pointer record ", err)
 	return nil
-
 }

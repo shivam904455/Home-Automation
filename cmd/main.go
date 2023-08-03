@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/shivam904455/Home-Automation/api"
 	"github.com/shivam904455/Home-Automation/server"
 )
 

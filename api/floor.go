@@ -8,29 +8,28 @@ func (api APIRoutes) FloorRouts(router *gin.Engine) {
 	{
 		floorapi.GET("/all", api.GetAllFloors)
 		floorapi.GET("/filter", api.AuthMiddlewareComplete(), api.GetFloorsByFilter)
-		floorapi.GET("/:id", api.GetFloor)
+		floorapi.GET("/:id", api.CreateFloor)
 		floorapi.POST("/create", api.CreateFloor)
 		floorapi.PUT("/update/:id", api.UpdateFloor)
 		floorapi.DELETE("/delete/:id", api.DeleteFloor)
 	}
-
 }
 
-// Handler to get all floors
+// Handler to get all Floors
 // @router /floor/all [get]
 // @summary Get all floors
 // @tags floors
 // @produce json
-// @param page query int false "Page number (default: 1)"
-// @param limit query int false "Number of results per page (default: 10)"
+// @param page query int false "Page number (default:1)"
+// @param limit query int false "Number of results per page (default:10)"
 // @success 200 {array} model.Floor
 func (api APIRoutes) GetAllFloors(c *gin.Context) {
 	api.Server.GetFloors(c)
 }
 
-// Handler to get all floors based on filter
+// Handler to get all floor based on filter
 // @router /floor/filter [get]
-// @summary Get all floors based on given filters
+// @summary Get all floors based on filters
 // @tags floors
 // @produce json
 // @param id query string false "id"
@@ -48,15 +47,15 @@ func (api APIRoutes) GetAllFloors(c *gin.Context) {
 // @param temperature query string false "temperature"
 // @param humidity query string false "humidity"
 // @param light_level query string false "light_level"
-// @param co2_level query string false "co2_level"
+// @param co2_level query string false "co2_false"
 // @param created_at query string false "created_at"
 // @param created_by query string false "created_by"
 // @param updated_at query string false "updated_at"
 // @param updated_by query string false "updated_by"
-// @param start_date query string false "start date"
-// @param end_date query string false "end date"
-// @param page query int false "Page number (default: 1)"
-// @param limit query int false "Number of results per page (default: 10)"
+// @param start_date query string false "start_date"
+// @param end_date query string false "end_date"
+// @param page query int false "Page number (default:1)"
+// @param limit query int false "Number of results per page (default:10)"
 // @success 200 {array} model.Floor
 // @Security ApiKeyAuth
 func (api APIRoutes) GetFloorsByFilter(c *gin.Context) {
@@ -84,6 +83,7 @@ func (api APIRoutes) GetFloor(c *gin.Context) {
 // @param floor body model.Floor true "Floor object"
 // @success 201 {object} model.Floor
 // @failure 400 {object} model.ErrorResponse
+
 func (api APIRoutes) CreateFloor(c *gin.Context) {
 	api.Server.CreateFloor(c)
 }

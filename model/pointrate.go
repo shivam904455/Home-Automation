@@ -3,10 +3,8 @@ package model
 import (
 	"time"
 
-	"github.com/google/uuid"
+	uuid "github.com/google/uuid"
 )
-
-
 
 type PointRate struct {
 	ID          uuid.UUID `json:"id" gorm:"primaryKey"`

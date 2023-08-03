@@ -6,14 +6,13 @@ func (api APIRoutes) HouseRouts(router *gin.Engine) {
 	// Define routes
 	houseapi := router.Group("/house")
 	{
-		houseapi.GET("/all", api.GetAllHouses)
+		houseapi.GET("/all ", api.GetAllHouses)
 		houseapi.GET("/filter", api.AuthMiddlewareComplete(), api.GetHousesByFilter)
 		houseapi.GET("/:id", api.GetHouse)
 		houseapi.POST("/create", api.CreateHouse)
 		houseapi.PUT("/update/:id", api.UpdateHouse)
 		houseapi.DELETE("/delete/:id", api.DeleteHouse)
 	}
-
 }
 
 // Handler to get all houses
@@ -22,7 +21,7 @@ func (api APIRoutes) HouseRouts(router *gin.Engine) {
 // @tags houses
 // @produce json
 // @param page query int false "Page number (default: 1)"
-// @param limit query int false "Number of results per page (default: 10)"
+// @param limit query int false "Number of results per page (default:10)"
 // @success 200 {array} model.House
 func (api APIRoutes) GetAllHouses(c *gin.Context) {
 	api.Server.GetHouses(c)
@@ -45,12 +44,13 @@ func (api APIRoutes) GetAllHouses(c *gin.Context) {
 // @param updated_by query string false "updated_by"
 // @param latitude query string false "latitude"
 // @param longitude query string false "longitude"
-// @param start_date query string false "start date"
-// @param end_date query string false "end date"
+// @param start_date query string false "start_date"
+// @param end_date query string false "end_date"
 // @param page query int false "Page number (default: 1)"
 // @param limit query int false "Number of results per page (default: 10)"
 // @success 200 {array} model.House
 // @Security ApiKeyAuth
+
 func (api APIRoutes) GetHousesByFilter(c *gin.Context) {
 	api.Server.GetHousesByFilter(c)
 }
@@ -66,7 +66,6 @@ func (api APIRoutes) GetHousesByFilter(c *gin.Context) {
 func (api APIRoutes) GetHouse(c *gin.Context) {
 	api.Server.GetHouse(c)
 }
-
 // Handler to create a house
 // @router /house/create [post]
 // @summary Create a house

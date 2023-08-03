@@ -7,6 +7,7 @@ import (
 	"github.com/golang-jwt/jwt"
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

@@ -3,17 +3,17 @@ package model
 import (
 	"time"
 
-	"github.com/google/uuid"
+	uuid "github.com/google/uuid"
 )
 
 type Room struct {
-	ID                 uuid.UUID   `json:"id" gorm:"primaryKey"`
+	ID                 uuid.UUID `json:"id" gorm:"primaryKey"`
 	HouseID            uuid.UUID `json:"house_id" binding:"required" gorm:"not null"`
 	FloorID            uuid.UUID `json:"floor_id" binding:"required" gorm:"not null"`
 	Name               string    `json:"name" binding:"required" gorm:"not null"`
 	Description        string    `json:"location"`
 	Area               string    `json:"area"`
-	Occupancy          string    `json:"occupancyuuid"`
+	Occupancy          string    `json:"occupancy"`
 	HeatingEnabled     bool      `json:"heating_enabled"`
 	HeatingType        string    `json:"heatin_type"`
 	CoolingEnabled     bool      `json:"cooling_enabled"`

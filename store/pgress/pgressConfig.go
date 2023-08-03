@@ -12,11 +12,11 @@ type PgressStore struct {
 }
 
 func (store *PgressStore) NewStore() {
-
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.NewStore, "Setting DataBase", nil)
- 	db, err := gorm.Open(postgres.Open(model.DSN), &gorm.Config{})
+
+	db, err := gorm.Open(postgres.Open(model.DSN), &gorm.Config{})
 	if err != nil {
-		util.Log(model.LogLevelError, model.PgressPackageLevel, model.NewStore,
+		util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.NewStore,
 			"error while connecting database", err)
 		panic(err)
 	}
@@ -39,5 +39,6 @@ func (store *PgressStore) NewStore() {
 		panic(err)
 	}
 	store.DB = db
-	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.NewStore, "setting dataBase compleed .... ", nil)
-}  
+	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.NewStore, "setting dataBase completed .... ", nil)
+
+}

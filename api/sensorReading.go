@@ -40,8 +40,8 @@ func (api APIRoutes) GetSensorReadings(c *gin.Context) {
 // @param reading query string false "reading"
 // @param created_at query string false "created_at"
 // @param updated_at query string false "updated_at"
-// @param start_date query string false "start date"
-// @param end_date query string false "end date"
+// @param start_date query string false "start_date"
+// @param end_date query string false "end_date"
 // @param page query int false "Page number (default: 1)"
 // @param limit query int false "Number of results per page (default: 10)"
 // @success 200 {array} model.SensorReading

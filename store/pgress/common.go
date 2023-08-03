@@ -1,33 +1,36 @@
 package pgress
 
-import (
+import(
 	"strconv"
 	"time"
+
 
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 	"gorm.io/gorm"
+
 )
 
-func (store PgressStore) setLimitAndPage(filter map[string]string, query *gorm.DB){
-	// Convert limit and page to integers
+func (store PgressStore) setLimitAndPage(filter map[string]string, query *gorm.DB) {
+	// Convert limit and page to interger 
 	limit := filter[model.DataPerPage]
 	page := filter[model.DataPerPage]
 	if limit == "" {
 		limit = "10" // Default limit is 10
 	}
 	if page == "" {
-		page = "1" // Default page is 1
+		page = "1" // Default page is 1 
 	}
 	limitInt, err := strconv.Atoi(limit)
 	if err != nil {
 		util.Log(model.LogLevelError, model.PgressPackageLevel, model.SetLimitAndPage,
-			"error while while converting limit to int", err)
+		"error while converting limit to int ", err)
 	}
 	pageInt, err := strconv.Atoi(page)
 	if err != nil {
 		util.Log(model.LogLevelError, model.PgressPackageLevel, model.SetLimitAndPage,
-			"error while while converting page to int", err)
+		"error while converting page to int ", err)
+
 	}
 
 	// Apply pagination
@@ -59,5 +62,4 @@ func (store PgressStore) setDateRangeFilter(filter map[string]string, query *gor
 		return
 	}
 	query.Where("date_column BETWEEN ? AND ?", startDate, endDate)
-	
 }

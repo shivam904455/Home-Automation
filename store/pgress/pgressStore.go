@@ -1,44 +1,53 @@
 package pgress
 
-import "github.com/shivam904455/Home-Automation/model"
+import (
+	"github.com/shivam904455/Home-Automation/model"
+
+
+)
 
 type StoreOperation interface {
-	//Postgress config methods
+	// Postgress  config methods
 	NewStore()
 
-	// Actuator operation methods
+
+	// Actuator operation methods 
 	GetActuators() (*[]model.Actuator, error)
-	GetActuatorsByFilter(filter map[string]string) (*[]model.Actuator, error)
+	GetActuatorByFilter(filter map[string]string) (*[]model.Actuator, error)
 	GetActuator(actuatorID string) (*model.Actuator, error)
 	CreateActuator(actuator *model.Actuator) error
 	UpdateActuator(actuator *model.Actuator) error
 	DeleteActuator(actuatorID string) error
 
-	//Floor operation methods
-	GetFloors() (*[]model.Floor, error)
+
+	// Floor Operation methods
+	GetFloors() (*[]model.Floor,error)
 	GetFloorsByFilter(filter map[string]string) (*[]model.Floor, error)
-	GetFloor(floorID string) (*model.Floor, error)
+	GetFloor(floorID string)( *model.Floor,error)
 	CreateFloor(floor *model.Floor) error
 	UpdateFloor(floor *model.Floor) error
 	DeleteFloor(floorID string) error
 
-	//House operation methods
+
+	// House Operation methods 
 	GetHouses() (*[]model.House, error)
 	GetHousesByFilter(filter map[string]string) (*[]model.House, error)
-	GetHouse(houseID string) (*model.House, error)
+	GetHouse(houseID string) (*model.House,error)
 	CreateHouse(house *model.House) error
 	UpdateHouse(house *model.House) error
 	DeleteHouse(houseID string) error
 
-	//Organization operation methods
-	GetOrganizations() (*[]model.Organization, error)
-	GetOrganizationsByFilter(filter map[string]string) (*[]model.Organization, error)
-	GetOrganization(organizationID string) (*model.Organization, error)
+
+	// Organization operation methods 
+	GetOraganizations() (*[]model.Organization, error)
+	GetOraganizationsByFilter(filter map[string]string) (*[]model.Organization, error)
+	GetOraganization(organizationID string) (*model.Organization, error)
 	CreateOrganization(organization *model.Organization) error
 	UpdateOrganization(organization *model.Organization) error
 	DeleteOrganization(organizationID string) error
 
-	//Package operation methods
+
+	// Package operation methods
 	GetPackages() (*[]model.Package, error)
 	GetPackagesByFilter(filter map[string]string) (*[]model.Package, error)
 	GetPackage(pkgID string) (*model.Package, error)
@@ -46,7 +55,8 @@ type StoreOperation interface {
 	UpdatePackage(pkg *model.Package) error
 	DeletePackage(pkgID string) error
 
-	//PointRate operation method
+
+	// PointRate operation method
 	GetPointRates() (*[]model.PointRate, error)
 	GetPointRatesByFilter(filter map[string]string) (*[]model.PointRate, error)
 	GetPointRate(pointRateID string) (*model.PointRate, error)
@@ -54,7 +64,8 @@ type StoreOperation interface {
 	UpdatePointRate(pointRate *model.PointRate) error
 	DeletePointRate(pointRateID string) error
 
-	//Room operation methods
+
+	// Room Operation methods
 	GetRooms() (*[]model.Room, error)
 	GetRoomsByFilter(filter map[string]string) (*[]model.Room, error)
 	GetRoom(roomID string) (*model.Room, error)
@@ -87,4 +98,6 @@ type StoreOperation interface {
 	DeleteUser(userId string) error
 	SingIn(userSignIn model.UserSignIn) (*model.User, error)
 	SignUp(user *model.User) error
+
+
 }

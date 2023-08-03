@@ -2,7 +2,6 @@ package pgress
 
 import (
 	"fmt"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 	"gorm.io/gorm"
@@ -43,15 +42,15 @@ func (store PgressStore) GetUsersByFilter(filter map[string]string) (*[]model.Us
 		"reading user data from db based on filter", filter)
 	var query *gorm.DB
 	for key, value := range filter {
-		if key == model.PageNumber || key == model.DataPerPage || key == filter[model.StartDate] || key == filter[model.EndDate] {
+		if key == model.PageNumber || key == model.DataPerPage || key == filter[model.StartDate] || key == filter[model.EndDate]{
 			continue
 		}
 		util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.GetUserByFilter,
-			"filters key", key+" value = "+value)
+			"filters key", key + " value = "+ value)
 		query = store.DB.Where(fmt.Sprintf("%s = ?", key), value)
 	}
 	store.setLimitAndPage(filter, query)
-	store.setDateRangeFilter(filter, query)
+	store.setDateRangeFilter(filter , query)
 	util.Log(model.LogLevelInfo, model.PgressPackageLevel, model.GetUserByFilter,
 		"generated query ", query)
 	err := query.Find(&user).Error

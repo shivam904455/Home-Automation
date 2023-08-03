@@ -1,11 +1,8 @@
 package server
 
 import (
-
-
 	"github.com/gin-gonic/gin"
 )
-
 
 func (server Server) readQueryParams(c *gin.Context)map[string]string {
 	queryParams := c.Request.URL.Query()

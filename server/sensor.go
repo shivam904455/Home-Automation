@@ -7,11 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 )
-
 
 func (server *Server) GetSensors(c *gin.Context) (*[]model.Sensor, error) {
 
@@ -62,7 +60,7 @@ func (server *Server) GetSensor(c *gin.Context) (*model.Sensor, error) {
 			"error while reading sensor data from pgress", err )
 		return sensor, fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetSensors , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetSensor , 
 		"returning sensor data to api and setting response" , sensor)
 	c.JSON(http.StatusOK, sensor)
 	return sensor, nil
@@ -91,7 +89,7 @@ func (server *Server) CreateSensor(c *gin.Context) error {
 			"error while creating record from pgress", err )
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetSensors , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.CreateSensor , 
 		"successfully created sensor record and setting response" , sensor)
 	c.JSON(http.StatusCreated, sensor)
 	return nil
@@ -119,7 +117,7 @@ func (server *Server) UpdateSensor(c *gin.Context) error {
 			"error while updating record from pgress", err )
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetSensors , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.UpdateSensor , 
 		"successfully updated sensor record and setting response" , sensor)
 	c.JSON(http.StatusOK, sensor)
 	return nil

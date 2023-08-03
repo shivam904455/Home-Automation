@@ -52,8 +52,8 @@ func (api APIRoutes) GetSensors(c *gin.Context) {
 // @param refresh_rate query string false "refresh_rate"
 // @param min_reading query string false "min_reading"
 // @param max_reading query string false "max_reading"
-// @param start_date query string false "start date"
-// @param end_date query string false "end date"
+// @param start_date query string false "start_date"
+// @param end_date query string false "end_date"
 // @param page query int false "Page number (default: 1)"
 // @param limit query int false "Number of results per page (default: 10)"
 // @success 200 {array} model.Sensor

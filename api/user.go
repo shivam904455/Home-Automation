@@ -11,11 +11,12 @@ func (api APIRoutes) UserRouts(router *gin.Engine) {
 		userapi.GET("/all", api.AuthMiddlewareComplete(), api.GetUsers)
 		userapi.GET("/filter", api.AuthMiddlewareComplete(), api.GetUsersByFilter)
 		userapi.GET("/:id", api.AuthMiddlewareComplete(), api.GetUser)
-		userapi.POST("/signup", api.SignUp)
-		userapi.POST("/signin", api.SignIn)
+		userapi.POST("/sighup", api.SighUp)
+		userapi.POST("/sighin", api.SighIn)
 		userapi.POST("/create", api.AuthMiddlewareComplete(), api.CreateUser)
 		userapi.PUT("/update/:id", api.AuthMiddlewareComplete(), api.UpdateUser)
 		userapi.DELETE("/delete/:id", api.AuthMiddlewareComplete(), api.DeleteUser)
+
 	}
 
 }
@@ -23,10 +24,10 @@ func (api APIRoutes) UserRouts(router *gin.Engine) {
 // Handler to get all users
 // @router /user/all [get]
 // @summary Get all users
-// @tags users
+// @tags user
 // @produce json
-// @param page query int false "Page number (default: 1)"
-// @param limit query int false "Number of results per page (default: 10)"
+// @param page query int false "page number (Default: 1)"
+// @param limit query int false "page of results per page (Default:10)"
 // @success 200 {array} model.User
 // @Security ApiKeyAuth
 func (api APIRoutes) GetUsers(c *gin.Context) {
@@ -72,29 +73,29 @@ func (api APIRoutes) GetUsersByFilter(c *gin.Context) {
 	api.Server.GetUsersByFilter(c)
 }
 
-// Handler to SignUp a user
-// @router /user/signup [post]
-// @summary SignUp a user
+// Handler to SighUp a user
+// @router /user/sighup [post]
+// @summary SighUp a user
 // @tags users
-// @accept json
+// @accepts json
 // @produce json
 // @param user body model.User true "User object"
-// @Success 200 {string} string "Successful SignUp"
+// @Success 200 {string } string "Successful SighUp"
 // @failure 400 {object} model.ErrorResponse
-func (api APIRoutes) SignUp(c *gin.Context) {
+func (api APIRoutes) SighUp(c *gin.Context) {
 	api.Server.SignUp(c)
 }
 
-// Handler to signIn a user by email and password
-// @router /user/signin [post]
+// Handler to SighIn a user by email and password
+// @router /user/sighin [post]
 // @summary SighIn user
 // @tags users
 // @produce json
 // @param user body model.UserSignIn true "User object"
-// @Success 200 {string} string "Successful SignIn"
+// @Success 200 {string} string "Successful SighIn "
 // @failure 404 {object} model.ErrorResponse
 // @Security ApiKeyAuth
-func (api APIRoutes) SignIn(c *gin.Context) {
+func (api APIRoutes) SighIn(c *gin.Context) {
 	api.Server.SignIn(c)
 }
 
@@ -103,7 +104,7 @@ func (api APIRoutes) SignIn(c *gin.Context) {
 // @summary Get a user by ID
 // @tags users
 // @produce json
-// @param id path string true "User ID"
+// @param id path string true "User ID "
 // @success 200 {object} model.User
 // @failure 404 {object} model.ErrorResponse
 // @Security ApiKeyAuth
@@ -113,35 +114,35 @@ func (api APIRoutes) GetUser(c *gin.Context) {
 
 // Handler to create a user
 // @router /user/create [post]
-// @summary Create a user
-// @tags users
-// @accept json
+// @summary create a user
+// @tags json
 // @produce json
 // @param user body model.User true "User object"
 // @success 201 {object} model.User
 // @failure 400 {object} model.ErrorResponse
 // @Security ApiKeyAuth
+
 func (api APIRoutes) CreateUser(c *gin.Context) {
 	api.Server.CreateUser(c)
 }
 
-// Handler to update a user
+// Hadler to update a user 
 // @router /user/update/{id} [put]
 // @summary Update a user
 // @tags users
-// @accept json
+// @accepts json
 // @produce json
-// @param id path string true "User ID"
+// @param id path string true "User ID "
 // @param user body model.User true "User object"
 // @success 200 {object} model.User
 // @failure 400 {object} model.ErrorResponse
-// @Security ApiKeyAuth
+// @Security ApiKeyPath
 func (api APIRoutes) UpdateUser(c *gin.Context) {
 	api.Server.UpdateUser(c)
 }
 
 // Handler to delete a user
-// @router  /user/delete/{id} [delete]
+// @router /user/delete/{id} [delete]
 // @summary Delete a user
 // @tags users
 // @param id path string true "User ID"

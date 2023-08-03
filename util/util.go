@@ -4,8 +4,9 @@ import (
 	"flag"
 	"os"
 
-	"github.com/shivam904455/Home-Automation/model"
 	"github.com/sirupsen/logrus"
+	"github.com/shivam904455/Home-Automation/model"
+	
 )
 
 var Logger *logrus.Logger
@@ -16,10 +17,7 @@ func init() {
 	Logger.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp: true,
 	})
-
 }
-
-// func  SetLoger()*logrus.Logger{
 
 func SetLoger() *logrus.Logger {
 
@@ -42,31 +40,31 @@ func SetLoger() *logrus.Logger {
 	return Logger
 }
 
-func Log(logLevel, pkgLevel, functionName string, message, parameater interface{}) {
+func Log(logLevel, pkgLevel, functionName string, message, parameter interface{}) {
 	switch logLevel {
 	case model.LogLevelDebug:
-		if parameater == nil {
+		if parameter == nil {
 			Logger.Debugf("%s, %s, %v\n", pkgLevel, functionName, message)
 		} else {
-			Logger.Debugf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameater)
+			Logger.Debugf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameter)
 		}
 	case model.LogLevelWarning:
-		if parameater == nil {
+		if parameter == nil {
 			Logger.Warnf("%s, %s, %v\n", pkgLevel, functionName, message)
 		} else {
-			Logger.Warnf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameater)
+			Logger.Warnf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameter)
 		}
 	case model.LogLevelError:
-		if parameater == nil {
+		if parameter == nil {
 			Logger.Errorf("%s, %s, %v\n", pkgLevel, functionName, message)
 		} else {
-			Logger.Errorf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.LogLevelError, parameater)
+			Logger.Errorf("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.LogLevelError, parameter)
 		}
 	default:
-		if parameater == nil {
+		if parameter == nil {
 			Logger.Infof("%s, %s, %v\n", pkgLevel, functionName, message)
 		} else {
-			Logger.Infof("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameater)
+			Logger.Infof("%s, %s, %v, %s = %v\n", pkgLevel, functionName, message, model.Value, parameter)
 		}
 	}
 }

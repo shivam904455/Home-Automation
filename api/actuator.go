@@ -7,13 +7,12 @@ func (api APIRoutes) ActuatorRouts(router *gin.Engine) {
 	actuatorapi := router.Group("/actuator")
 	{
 		actuatorapi.GET("/all", api.GetAllActuators)
-		actuatorapi.GET("/filter", api.AuthMiddlewareComplete(), api.GetActuatorsByFilter)
+		actuatorapi.GET("/filter", api.AuthMiddlewareComplete(), api.GetUsersByFilter)
 		actuatorapi.GET("/:id", api.GetActuator)
 		actuatorapi.POST("/create", api.CreateActuator)
 		actuatorapi.PUT("/update/:id", api.UpdateActuator)
 		actuatorapi.DELETE("/delete/:id", api.DeleteActuator)
 	}
-
 }
 
 // Handler to get all actuators
@@ -22,7 +21,7 @@ func (api APIRoutes) ActuatorRouts(router *gin.Engine) {
 // @tags actuators
 // @produce json
 // @param page query int false "Page number (default: 1)"
-// @param limit query int false "Number of results per page (default: 10)"
+// @param limit query int false "Number of results per page (defaults: 10)"
 // @success 200 {array} model.Actuator
 func (api APIRoutes) GetAllActuators(c *gin.Context) {
 	api.Server.GetActuators(c)
@@ -69,8 +68,8 @@ func (api APIRoutes) GetActuatorsByFilter(c *gin.Context) {
 // Handler to get a actuator by ID
 // @router /actuator/{id} [get]
 // @summary Get a actuator by ID
-// @tags actuators
-// @produce json
+// @tags actuators 
+// @produce json 
 // @param id path string true "Actuator ID"
 // @success 200 {object} model.Actuator
 // @failure 404 {object} model.ErrorResponse

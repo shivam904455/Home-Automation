@@ -7,11 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-
 	"github.com/shivam904455/Home-Automation/model"
 	"github.com/shivam904455/Home-Automation/util"
 )
-
 func (server *Server) GetRooms(c *gin.Context) (*[]model.Room, error) {
 
 	//validation is to be done here
@@ -90,7 +88,7 @@ func (server *Server) CreateRoom(c *gin.Context) error {
 			"error while creating record from pgress", err )
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetRooms , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.CreateRoom , 
 		"successfully created room record and setting response" , room)
 	c.JSON(http.StatusCreated, room)
 	return nil
@@ -118,7 +116,7 @@ func (server *Server) UpdateRoom(c *gin.Context) error {
 			"error while updating record from pgress", err )
 		return fmt.Errorf("")
 	}
-	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.GetRooms , 
+	util.Log(model.LogLevelInfo, model.ServerPackageLavel , model.UpdateRoom , 
 		"successfully updated room record and setting response" , room)
 	c.JSON(http.StatusOK, room)
 	return nil
